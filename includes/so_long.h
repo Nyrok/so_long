@@ -31,7 +31,9 @@ typedef struct s_map
 }	t_map;
 
 void	check_map(char *path, t_map *map);
-void	map_error(char *message);
-void	backtest(t_map *map);
+void	exit_error(char *message);
+void	backtrack(t_map *map);
+int		safe_open(char *path);
+void	safe_close(int fd);
 
 #endif

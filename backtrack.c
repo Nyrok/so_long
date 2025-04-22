@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   backtest.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkonte <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 13:16:35 by hkonte            #+#    #+#             */
-/*   Updated: 2025/04/17 13:19:42 by hkonte           ###   ########.fr       */
+/*   Created: 2025/04/22 14:27:52 by hkonte            #+#    #+#             */
+/*   Updated: 2025/04/22 14:27:54 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/so_long.h"
 
-int	main(int argc, char **argv)
+void	backtrack(t_map *map)
 {
-	struct s_map	*map;
-
-	map = malloc(sizeof(t_map));
-	if (!map)
-		return (1);
-	(void)argc;
-	map->content = NULL;
-	check_map(argv[1], map);
-	backtrack(map);
-	free(map->content);
-	free(map);
+	ft_printf("%s", map->content);
 }
