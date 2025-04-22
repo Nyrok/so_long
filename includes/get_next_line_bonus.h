@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 13:18:00 by hkonte            #+#    #+#             */
-/*   Updated: 2025/04/17 13:19:13 by hkonte           ###   ########.fr       */
+/*   Created: 2025/01/17 11:30:54 by hkonte            #+#    #+#             */
+/*   Updated: 2025/01/17 12:30:52 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-# define EMPTY '0'
-# define WALL '1'
-# define EXIT 'E'
-# define ITEM 'C'
-# define SPAWN 'P'
-# include <fcntl.h>
-# include "./ft_printf.h"
-# include "./get_next_line_bonus.h"
-# include "../minilibx-linux/mlx.h"
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+# define MAX_FD 2048
+# include <stdlib.h>
+# include <unistd.h>
 
-typedef struct s_map
-{
-	size_t	line_count;
-	size_t	line_len;
-}	t_map;
-
-int		check_map(char *path);
-void	map_error(char *message);
-
+char	*get_next_line(int fd);
+char	*ft_strchr(const char *str, const char c);
+size_t	ft_strlen(const char *str);
+char	*ft_strjoin(char *s1, char *s2);
 #endif

@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 13:18:00 by hkonte            #+#    #+#             */
-/*   Updated: 2025/04/17 13:19:13 by hkonte           ###   ########.fr       */
+/*   Created: 2025/04/17 13:16:35 by hkonte            #+#    #+#             */
+/*   Updated: 2025/04/22 13:43:05 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-# define EMPTY '0'
-# define WALL '1'
-# define EXIT 'E'
-# define ITEM 'C'
-# define SPAWN 'P'
-# include <fcntl.h>
-# include "./ft_printf.h"
-# include "./get_next_line_bonus.h"
-# include "../minilibx-linux/mlx.h"
+#include "./includes/so_long.h"
 
-typedef struct s_map
+void    map_error(char *message)
 {
-	size_t	line_count;
-	size_t	line_len;
-}	t_map;
-
-int		check_map(char *path);
-void	map_error(char *message);
-
-#endif
+	ft_printf("Error\n%s", message);
+	exit(1);
+}
