@@ -14,6 +14,15 @@
 
 int	main(int argc, char **argv)
 {
+	t_map	*map;
+
+	map = malloc(sizeof(t_map));
+	if (!map)
+		return (1);
 	(void)argc;
-	check_map(argv[1]);
+	map->content = NULL;
+	check_map(argv[1], map);
+	backtest(map);
+	free(map->content);
+	free(map);
 }

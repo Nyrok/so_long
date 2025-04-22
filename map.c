@@ -50,7 +50,7 @@ static void	check_line(char *line, char *last_line, size_t line_len)
 	}
 }
 
-int	check_map(char *path)
+void	check_map(char *path, t_map *map)
 {
 	int		fd;
 	char	*last_line;
@@ -59,8 +59,9 @@ int	check_map(char *path)
 	size_t	line_len;
 
 	fd = open(path, O_RDONLY);
-	line_count = 0;
 	line = get_next_line(fd);
+	map->content = ft_strjoin(map->content, line);
+	line_count = 0;
 	check_wall(line);
 	line_len = ft_strlen(line);
 	while (line != NULL)
@@ -69,6 +70,11 @@ int	check_map(char *path)
 		last_line = line;
 		line = get_next_line(fd);
 		check_line(line, last_line, line_len);
+		if (line)
+			map->content = ft_strjoin(map->content, line);
+		free(last_line);
 	}
-	return (1);
+	close(fd);
+	map->line_count = line_count;
+	map->line_len = line_len;
 }

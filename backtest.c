@@ -14,5 +14,5 @@
 
 void	backtest(t_map *map)
 {
-	(void)map;
+	ft_printf("%s", map->content);
 }

@@ -25,11 +25,13 @@
 
 typedef struct s_map
 {
-	size_t	line_count;
+	char	*content;
 	size_t	line_len;
+	size_t	line_count;
 }	t_map;
 
-int		check_map(char *path);
+void	check_map(char *path, t_map *map);
 void	map_error(char *message);
+void	backtest(t_map *map);
 
 #endif

@@ -12,7 +12,7 @@
 
 #include "./includes/so_long.h"
 
-void    map_error(char *message)
+void	map_error(char *message)
 {
 	ft_printf("Error\n%s", message);
 	exit(1);
