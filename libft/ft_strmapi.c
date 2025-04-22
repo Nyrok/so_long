@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 13:18:00 by hkonte            #+#    #+#             */
-/*   Updated: 2025/04/17 13:19:13 by hkonte           ###   ########.fr       */
+/*   Created: 2024/11/29 13:13:55 by hkonte            #+#    #+#             */
+/*   Updated: 2024/11/29 13:14:27 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-# include <fcntl.h>
-# include "./ft_printf.h"
-# include "./libft.h"
-# include "./get_next_line_bonus.h"
-# include "../minilibx-linux/mlx.h"
-# define EMPTY '0'
-# define WALL '1'
-# define EXIT 'E'
-# define ITEM 'C'
-# define SPAWN 'P'
+#include "../includes/libft.h"
 
-typedef struct s_map
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	line_count;
-	size_t	line_len;
-}	t_map;
+	char				*result;
+	unsigned int		i;
 
-int		check_map(char *path);
-void	map_error(char *message);
-
-#endif
+	result = ft_strdup(s);
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		result[i] = f(i, s[i]);
+		i++;
+	}
+	return (result);
+}

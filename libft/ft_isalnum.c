@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backtest.c                                         :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkonte <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 14:27:52 by hkonte            #+#    #+#             */
-/*   Updated: 2025/04/22 14:27:54 by hkonte           ###   ########.fr       */
+/*   Created: 2024/11/15 11:35:32 by hkonte            #+#    #+#             */
+/*   Updated: 2024/11/29 13:17:29 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/so_long.h"
+#include "../includes/libft.h"
 
-void	backtest(t_map *map)
+int	ft_isalnum(int c)
 {
-	(void)map;
+	return (ft_isdigit(c) || ft_isalpha(c));
 }

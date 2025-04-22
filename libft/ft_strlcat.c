@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 13:18:00 by hkonte            #+#    #+#             */
-/*   Updated: 2025/04/17 13:19:13 by hkonte           ###   ########.fr       */
+/*   Created: 2024/07/03 14:18:40 by hkonte            #+#    #+#             */
+/*   Updated: 2024/11/15 14:40:32 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-# include <fcntl.h>
-# include "./ft_printf.h"
-# include "./libft.h"
-# include "./get_next_line_bonus.h"
-# include "../minilibx-linux/mlx.h"
-# define EMPTY '0'
-# define WALL '1'
-# define EXIT 'E'
-# define ITEM 'C'
-# define SPAWN 'P'
+#include "../includes/libft.h"
 
-typedef struct s_map
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t	line_count;
-	size_t	line_len;
-}	t_map;
+	size_t	i;
+	size_t	n;
 
-int		check_map(char *path);
-void	map_error(char *message);
-
-#endif
+	n = ft_strlen(dest);
+	i = 0;
+	while (src[i] != '\0' && n + i + 1 < size)
+	{
+		dest[n + i] = src[i];
+		i++;
+	}
+	dest[n + i] = '\0';
+	if (n <= size)
+		return (n + ft_strlen(src));
+	return (size + ft_strlen(src));
+}

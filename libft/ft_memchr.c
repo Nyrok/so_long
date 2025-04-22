@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 13:18:00 by hkonte            #+#    #+#             */
-/*   Updated: 2025/04/17 13:19:13 by hkonte           ###   ########.fr       */
+/*   Created: 2024/11/15 14:48:32 by hkonte            #+#    #+#             */
+/*   Updated: 2024/11/15 14:50:17 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-# include <fcntl.h>
-# include "./ft_printf.h"
-# include "./libft.h"
-# include "./get_next_line_bonus.h"
-# include "../minilibx-linux/mlx.h"
-# define EMPTY '0'
-# define WALL '1'
-# define EXIT 'E'
-# define ITEM 'C'
-# define SPAWN 'P'
+#include "../includes/libft.h"
 
-typedef struct s_map
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	line_count;
-	size_t	line_len;
-}	t_map;
+	const unsigned char	*str;
+	unsigned char		uc;
+	size_t				i;
 
-int		check_map(char *path);
-void	map_error(char *message);
-
-#endif
+	str = (const unsigned char *)s;
+	uc = (unsigned char)c;
+	i = 0;
+	while (i < n)
+	{
+		if (str[i] == uc)
+			return ((void *)(s + i));
+		i++;
+	}
+	return (NULL);
+}

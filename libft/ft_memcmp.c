@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 13:18:00 by hkonte            #+#    #+#             */
-/*   Updated: 2025/04/17 13:19:13 by hkonte           ###   ########.fr       */
+/*   Created: 2024/07/03 14:07:59 by hkonte            #+#    #+#             */
+/*   Updated: 2024/11/15 14:54:22 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-# include <fcntl.h>
-# include "./ft_printf.h"
-# include "./libft.h"
-# include "./get_next_line_bonus.h"
-# include "../minilibx-linux/mlx.h"
-# define EMPTY '0'
-# define WALL '1'
-# define EXIT 'E'
-# define ITEM 'C'
-# define SPAWN 'P'
+#include "../includes/libft.h"
 
-typedef struct s_map
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	line_count;
-	size_t	line_len;
-}	t_map;
+	size_t				i;
+	const unsigned char	*str1;
+	const unsigned char	*str2;
 
-int		check_map(char *path);
-void	map_error(char *message);
-
-#endif
+	i = 0;
+	str1 = (const unsigned char *)s1;
+	str2 = (const unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	while (str1[i] == str2[i])
+	{
+		if (++i >= n)
+		{
+			i--;
+			return (str1[i] - str2[i]);
+		}
+	}
+	return (str1[i] - str2[i]);
+}

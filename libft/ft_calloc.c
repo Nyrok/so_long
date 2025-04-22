@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 13:18:00 by hkonte            #+#    #+#             */
-/*   Updated: 2025/04/17 13:19:13 by hkonte           ###   ########.fr       */
+/*   Created: 2024/11/15 14:30:57 by hkonte            #+#    #+#             */
+/*   Updated: 2024/11/29 13:16:48 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-# include <fcntl.h>
-# include "./ft_printf.h"
-# include "./libft.h"
-# include "./get_next_line_bonus.h"
-# include "../minilibx-linux/mlx.h"
-# define EMPTY '0'
-# define WALL '1'
-# define EXIT 'E'
-# define ITEM 'C'
-# define SPAWN 'P'
+#include "../includes/libft.h"
 
-typedef struct s_map
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t	line_count;
-	size_t	line_len;
-}	t_map;
+	void	*ptr;
 
-int		check_map(char *path);
-void	map_error(char *message);
-
-#endif
+	if (!nmemb || !size)
+	{
+		ptr = malloc(0);
+		return (ptr);
+	}
+	ptr = malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
+}

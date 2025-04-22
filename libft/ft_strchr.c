@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backtest.c                                         :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkonte <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 14:27:52 by hkonte            #+#    #+#             */
-/*   Updated: 2025/04/22 14:27:54 by hkonte           ###   ########.fr       */
+/*   Created: 2024/11/15 11:39:26 by hkonte            #+#    #+#             */
+/*   Updated: 2024/11/15 11:40:42 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/so_long.h"
+#include "../includes/libft.h"
 
-void	backtest(t_map *map)
+char	*ft_strchr(const char *str, const char c)
 {
-	(void)map;
+	while (*str)
+	{
+		if (*str == c)
+			return ((char *)str);
+		str++;
+	}
+	if (c == '\0')
+		return ((char *)str);
+	return (NULL);
 }

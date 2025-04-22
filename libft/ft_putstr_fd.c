@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backtest.c                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkonte <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 14:27:52 by hkonte            #+#    #+#             */
-/*   Updated: 2025/04/22 14:27:54 by hkonte           ###   ########.fr       */
+/*   Created: 2024/11/15 14:27:31 by hkonte            #+#    #+#             */
+/*   Updated: 2024/11/15 14:46:50 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/so_long.h"
+#include "../includes/libft.h"
 
-void	backtest(t_map *map)
+void	ft_putstr_fd(const char *s, int fd)
 {
-	(void)map;
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		ft_putchar_fd(s[i++], fd);
 }

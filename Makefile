@@ -1,6 +1,7 @@
-# Définition des variables
 CX = cc
 CXFLAGS = -Wall -Wextra -Werror
+
+MINILIBXFLAGS = -lX11 -lXext -lm
 
 SRCS =	map.c \
 		error.c \
@@ -13,6 +14,8 @@ OUTPUT = so_long
 
 LIB_PRINTF = ft_printf/libftprintf.a
 LIB_MINILIBX = minilibx-linux/libmlx.a
+LIB_FT = libft/libft.a
+LIBS = $(LIB_PRINTF) $(LIB_MINILIBX) $(LIB_FT)
 
 all: $(OUTPUT) $(CLIENT)
 
@@ -24,8 +27,11 @@ $(LIB_PRINTF):
 $(LIB_MINILIBX):
 	make -C minilibx-linux
 
-$(OUTPUT): $(OBJS) $(LIB_PRINTF)
-	$(CX) $(CXFLAGS) main.c $(OBJS) -o $(OUTPUT) -I includes $(LIB_PRINTF) -lX11 -lXext -lm
+$(LIB_FT):
+	make -C libft
+
+$(OUTPUT): $(OBJS) $(LIBS) 
+	$(CX) $(CXFLAGS) main.c $(OBJS) -o $(OUTPUT) -I includes $(LIBS) $(MINILIBXFLAGS)
 
 %.o: %.c
 	$(CX) $(CXFLAGS) -c $< -o $@
@@ -34,12 +40,14 @@ clean:
 	rm -f $(OBJS)
 	make clean -C ft_printf
 	make clean -C minilibx-linux
+	make clean -C libft
 
 fclean: clean
 	rm -f $(OUTPUT)
 	rm -f $(LIB_PRINTF)
 	rm -f $(LIB_MINILIBX)
+	rm -f $(LIB_FT)
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
