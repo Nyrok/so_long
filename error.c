@@ -12,8 +12,9 @@
 
 #include "./includes/so_long.h"
 
-void	exit_error(char *message)
+void	exit_error(t_map *map, char *message)
 {
-	ft_printf("Error\n%s", message);
+	free_map(map);
+	ft_printf("Error\n%s\n", message);
 	exit(EXIT_FAILURE);
 }

@@ -12,10 +12,26 @@
 
 #include "./includes/so_long.h"
 
+void	free_gnl(int fd, char *line, char *last_line)
+{
+	char	*gnl;
+
+	free(line);
+	free(last_line);
+	gnl = get_next_line(fd);
+	while (gnl)
+	{
+		free(gnl);
+		gnl = get_next_line(fd);
+	}
+}
+
 void	free_map(t_map *map)
 {
 	size_t	i;
 
+	if (map == NULL)
+		return ;
 	if (map->content)
 		free(map->content);
 	if (map->lines)
@@ -25,7 +41,7 @@ void	free_map(t_map *map)
 		{
 			if (map->lines[i])
 				free(map->lines[i]);
-			if (map->copy_lines[i])
+			if (map->copy_lines && map->copy_lines[i])
 				free(map->copy_lines[i]);
 			i++;
 		}

@@ -9,6 +9,7 @@ SRCS =	main.c \
 		backtrack.c \
 		utils.c \
 		free.c \
+		check.c \
 		get_next_line/get_next_line_bonus.c \
 		get_next_line/get_next_line_utils_bonus.c
 

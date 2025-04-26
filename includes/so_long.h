@@ -26,6 +26,7 @@
 
 typedef struct s_map
 {
+	int		fd;
 	char	*content;
 	char	**lines;
 	char	**copy_lines;
@@ -36,11 +37,14 @@ typedef struct s_map
 }	t_map;
 
 void	init_map(char *path, t_map *map);
-void	exit_error(char *message);
+void	exit_error(t_map *map, char *message);
 void	backtrack(t_map *map);
-int		safe_open(char *path);
-void	safe_close(int fd);
+int		safe_open(t_map *map, char *path);
+void	safe_close(t_map *map, int fd);
 void	free_map(t_map *map);
+void	free_gnl(int fd, char *line, char *last_line);
 int		ft_strcount(char *str, char c);
+void	check_map(char *path, t_map *map);
+void	check_content(t_map *map);
 
 #endif

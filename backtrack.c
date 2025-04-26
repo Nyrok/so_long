@@ -19,10 +19,7 @@ static void	make_copy(t_map *map)
 	i = 0;
 	map->copy_lines = ft_calloc(map->line_count + 1, sizeof(char *));
 	if (!map->copy_lines)
-	{
-		free_map(map);
-		exit_error("Malloc failed for copy lines.");
-	}
+		exit_error(map, "Malloc failed for copy lines.");
 	while (i < map->line_count)
 	{
 		map->copy_lines[i] = ft_strdup(map->lines[i]);
@@ -96,14 +93,8 @@ void	backtrack(t_map *map)
 {
 	make_copy(map);
 	if (!find_spawn(map))
-	{
-		free_map(map);
-		exit_error("(Map) Spawn point not found.");
-	}
+		exit_error(map, "(Map) Spawn point not found.");
 	fill(map, map->spawn_x, map->spawn_y);
 	if (!check_all_reachable(map))
-	{
-		free_map(map);
-		exit_error("(Map) Map not reachable.");
-	}
+		exit_error(map, "(Map) Map not reachable.");
 }
