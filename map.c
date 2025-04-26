@@ -31,12 +31,12 @@ static void	check_line(char *line, char *last_line, size_t line_len)
 
 	if (!line)
 		check_wall(last_line);
+	else if (ft_strlen(line) != line_len)
+		exit_error("(Map) Line length mismatch.");
 	else if (line[0] == '\n')
 		exit_error("(Map) Empty lines.");
 	else if (line[0] != WALL || line[line_len - 2] != WALL)
 		exit_error("(Map) Line is not surrounded by walls.");
-	else if (ft_strlen(line) != line_len)
-		exit_error("(Map) Line length mismatch.");
 	else
 	{
 		i = 0;
@@ -44,7 +44,7 @@ static void	check_line(char *line, char *last_line, size_t line_len)
 		{
 			if (line[i] != WALL && line[i] != EMPTY && line[i] != EXIT \
 				&& line[i] != ITEM && line[i] != SPAWN)
-				exit_error("(Map) Invalid map char.");
+				exit_error("(Map) Invalid map chars.");
 			i++;
 		}
 	}
@@ -58,7 +58,7 @@ void	check_map(char *path, t_map *map)
 	size_t	line_count;
 	size_t	line_len;
 
-	fd = safe_open(path, O_RDONLY);
+	fd = safe_open(path);
 	line = get_next_line(fd);
 	map->content = ft_strjoin(map->content, line);
 	line_count = 0;

@@ -22,10 +22,15 @@
 # define EXIT 'E'
 # define ITEM 'C'
 # define SPAWN 'P'
+# define VISITED 'X'
 
 typedef struct s_map
 {
 	char	*content;
+	char	**lines;
+	char	**copy;
+	int		spawn_x;
+	int		spawn_y;
 	size_t	line_len;
 	size_t	line_count;
 }	t_map;

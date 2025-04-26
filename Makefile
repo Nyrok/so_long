@@ -5,7 +5,8 @@ MINILIBXFLAGS = -lX11 -lXext -lm
 
 SRCS =	map.c \
 		error.c \
-		backtest.c \
+		backtrack.c \
+		utils.c \
 		get_next_line/get_next_line_bonus.c \
 		get_next_line/get_next_line_utils_bonus.c
 

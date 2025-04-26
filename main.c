@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 	(void)argc;
 	map->content = NULL;
 	check_map(argv[1], map);
+	map->lines = ft_split(map->content, '\n');
 	backtrack(map);
 	free(map->content);
 	free(map);
