@@ -35,8 +35,7 @@ typedef struct s_map
 	size_t	line_count;
 }	t_map;
 
-void	check_map(char *path, t_map *map);
-void	check_content(t_map *map);
+void	init_map(char *path, t_map *map);
 void	exit_error(char *message);
 void	backtrack(t_map *map);
 int		safe_open(char *path);

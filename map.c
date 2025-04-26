@@ -50,7 +50,7 @@ static void	check_line(char *line, char *last_line, size_t line_len)
 	}
 }
 
-void	check_map(char *path, t_map *map)
+static void	check_map(char *path, t_map *map)
 {
 	int		fd;
 	char	*last_line;
@@ -79,7 +79,7 @@ void	check_map(char *path, t_map *map)
 	map->line_len = line_len;
 }
 
-void	check_content(t_map *map)
+static void	check_content(t_map *map)
 {
 	if (!ft_strchr(map->content, ITEM))
 	{
@@ -96,4 +96,20 @@ void	check_content(t_map *map)
 		free(map->content);
 		exit_error("(Map) The map must have one exit.");
 	}
+}
+
+void	init_map(char *path, t_map *map)
+{
+	if (!map)
+		exit_error("Malloc for map failed.");
+	map->content = NULL;
+	check_map(path, map);
+	check_content(map);
+	map->lines = ft_split(map->content, '\n');
+	if (!map->lines)
+	{
+		free_map(map);
+		exit_error("Malloc for lines failed.");
+	}
+	backtrack(map);
 }

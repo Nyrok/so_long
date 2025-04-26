@@ -3,7 +3,8 @@ CXFLAGS = -Wall -Wextra -Werror
 
 MINILIBXFLAGS = -lX11 -lXext -lm
 
-SRCS =	map.c \
+SRCS =	main.c \
+		map.c \
 		error.c \
 		backtrack.c \
 		utils.c \
@@ -19,9 +20,7 @@ LIB_MINILIBX = minilibx-linux/libmlx.a
 LIB_FT = libft/libft.a
 LIBS = $(LIB_PRINTF) $(LIB_MINILIBX) $(LIB_FT)
 
-all: $(OUTPUT) $(CLIENT)
-
-bonus: $(SERVER_BONUS) $(CLIENT_BONUS)
+all: $(OUTPUT)
 
 $(LIB_PRINTF):
 	make -C ft_printf
@@ -32,8 +31,8 @@ $(LIB_MINILIBX):
 $(LIB_FT):
 	make -C libft
 
-$(OUTPUT): $(OBJS) $(LIBS) 
-	$(CX) $(CXFLAGS) main.c $(OBJS) -o $(OUTPUT) -I includes $(LIBS) $(MINILIBXFLAGS)
+$(OUTPUT): $(OBJS) $(LIBS)
+	$(CX) $(CXFLAGS) $(OBJS) -o $(OUTPUT) -I includes $(LIBS) $(MINILIBXFLAGS)
 
 %.o: %.c
 	$(CX) $(CXFLAGS) -c $< -o $@

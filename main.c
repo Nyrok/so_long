@@ -14,22 +14,14 @@
 
 int	main(int argc, char **argv)
 {
-	struct s_map	*map;
+	t_map	*map;
 
-	map = malloc(sizeof(t_map));
-	if (!map)
-		return (1);
-	(void)argc;
-	map->content = NULL;
-	check_map(argv[1], map);
-	check_content(map);
-	map->lines = ft_split(map->content, '\n');
-	if (!map->lines)
+	if (argc != 2)
 	{
-		free_map(map);
-		exit_error("Malloc for lines failed.");
+		ft_putendl_fd("Usage: ./so_long <map_file.ber>", STDOUT_FILENO);
+		return (EXIT_FAILURE);
 	}
-	backtrack(map);
-	free(map->content);
-	free(map);
+	map = malloc(sizeof(t_map));
+	init_map(argv[1], map);
+	free_map(map);
 }

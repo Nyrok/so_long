@@ -94,8 +94,6 @@ static int	check_all_reachable(t_map *map)
 
 void	backtrack(t_map *map)
 {
-	size_t	i;
-
 	make_copy(map);
 	if (!find_spawn(map))
 	{
@@ -104,9 +102,8 @@ void	backtrack(t_map *map)
 	}
 	fill(map, map->spawn_x, map->spawn_y);
 	if (!check_all_reachable(map))
+	{
+		free_map(map);
 		exit_error("(Map) Map not reachable.");
-	i = 0;
-	while (i < map->line_count)
-		free(map->copy_lines[i++]);
-	free(map->copy_lines);
+	}
 }

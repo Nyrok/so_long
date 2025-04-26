@@ -15,5 +15,5 @@
 void	exit_error(char *message)
 {
 	ft_printf("Error\n%s", message);
-	exit(1);
+	exit(EXIT_FAILURE);
 }
