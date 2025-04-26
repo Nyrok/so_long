@@ -78,3 +78,22 @@ void	check_map(char *path, t_map *map)
 	map->line_count = line_count;
 	map->line_len = line_len;
 }
+
+void	check_content(t_map *map)
+{
+	if (!ft_strchr(map->content, ITEM))
+	{
+		free(map->content);
+		exit_error("(Map) The map must have at least one item.");
+	}
+	if (ft_strcount(map->content, SPAWN) != 1)
+	{
+		free(map->content);
+		exit_error("(Map) The map must have one player spawn.");
+	}
+	if (ft_strcount(map->content, EXIT) != 1)
+	{
+		free(map->content);
+		exit_error("(Map) The map must have one exit.");
+	}
+}

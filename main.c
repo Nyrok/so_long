@@ -22,7 +22,13 @@ int	main(int argc, char **argv)
 	(void)argc;
 	map->content = NULL;
 	check_map(argv[1], map);
+	check_content(map);
 	map->lines = ft_split(map->content, '\n');
+	if (!map->lines)
+	{
+		free_map(map);
+		exit_error("Malloc for lines failed.");
+	}
 	backtrack(map);
 	free(map->content);
 	free(map);

@@ -28,7 +28,7 @@ typedef struct s_map
 {
 	char	*content;
 	char	**lines;
-	char	**copy;
+	char	**copy_lines;
 	int		spawn_x;
 	int		spawn_y;
 	size_t	line_len;
@@ -36,9 +36,12 @@ typedef struct s_map
 }	t_map;
 
 void	check_map(char *path, t_map *map);
+void	check_content(t_map *map);
 void	exit_error(char *message);
 void	backtrack(t_map *map);
 int		safe_open(char *path);
 void	safe_close(int fd);
+void	free_map(t_map *map);
+int		ft_strcount(char *str, char c);
 
 #endif

@@ -14,19 +14,20 @@
 
 static void	make_copy(t_map *map)
 {
-	char	**copy;
 	size_t	i;
 
 	i = 0;
-	copy = ft_calloc(map->line_count + 1, sizeof(char *));
-	if (!copy)
-		exit_error("Malloc failed in backtrack");
+	map->copy_lines = ft_calloc(map->line_count + 1, sizeof(char *));
+	if (!map->copy_lines)
+	{
+		free_map(map);
+		exit_error("Malloc failed for copy lines.");
+	}
 	while (i < map->line_count)
 	{
-		copy[i] = ft_strdup(map->lines[i]);
+		map->copy_lines[i] = ft_strdup(map->lines[i]);
 		i++;
 	}
-	map->copy = copy;
 }
 
 static void	fill(t_map *map, int x, int y)
@@ -38,9 +39,9 @@ static void	fill(t_map *map, int x, int y)
 	line_len = (int)map->line_len;
 	if (x < 0 || y < 0 || y >= line_count || x >= line_len)
 		return ;
-	if (map->copy[y][x] == WALL || map->copy[y][x] == VISITED)
+	if (map->copy_lines[y][x] == WALL || map->copy_lines[y][x] == VISITED)
 		return ;
-	map->copy[y][x] = VISITED;
+	map->copy_lines[y][x] = VISITED;
 	fill(map, x + 1, y);
 	fill(map, x - 1, y);
 	fill(map, x, y + 1);
@@ -58,7 +59,7 @@ static int	find_spawn(t_map *map)
 		x = 0;
 		while (x < map->line_len)
 		{
-			if (map->copy[y][x] == SPAWN)
+			if (map->copy_lines[y][x] == SPAWN)
 			{
 				map->spawn_x = (int)x;
 				map->spawn_y = (int)y;
@@ -82,7 +83,7 @@ static int	check_all_reachable(t_map *map)
 		x = 0;
 		while (x < map->line_len)
 		{
-			if (map->copy[y][x] == ITEM || map->copy[y][x] == EXIT)
+			if (map->copy_lines[y][x] == ITEM || map->copy_lines[y][x] == EXIT)
 				return (0);
 			x++;
 		}
@@ -97,12 +98,15 @@ void	backtrack(t_map *map)
 
 	make_copy(map);
 	if (!find_spawn(map))
-		exit_error("Spawn point not found");
+	{
+		free_map(map);
+		exit_error("(Map) Spawn point not found.");
+	}
 	fill(map, map->spawn_x, map->spawn_y);
 	if (!check_all_reachable(map))
-		exit_error("Map not reachable");
+		exit_error("(Map) Map not reachable.");
 	i = 0;
 	while (i < map->line_count)
-		free(map->copy[i++]);
-	free(map->copy);
+		free(map->copy_lines[i++]);
+	free(map->copy_lines);
 }
