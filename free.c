@@ -32,6 +32,9 @@ static void	free_mlx(t_map *map)
 		free(map->mlx);
 	if (map->mlx_wdw)
 		free(map->mlx_wdw);
+	if (map->imgs)
+		while (map->imgs_count)
+			free(map->imgs[map->imgs_count--]);
 }
 
 void	free_map(t_map *map)
