@@ -23,5 +23,7 @@ int	main(int argc, char **argv)
 	}
 	map = malloc(sizeof(t_map));
 	init_map(argv[1], map);
+	init_window(map);
+	mlx_loop(map->mlx);
 	free_map(map);
 }

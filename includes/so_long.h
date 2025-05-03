@@ -31,6 +31,10 @@ typedef struct s_map
 	char	*content;
 	char	**lines;
 	char	**copy_lines;
+	void	*mlx;
+	void	*mlx_wdw;
+	int		size_x;
+	int		size_y;
 	int		spawn_x;
 	int		spawn_y;
 	size_t	line_len;
@@ -47,5 +51,6 @@ void	free_gnl(int fd, char *line, char *last_line);
 int		ft_strcount(char *str, char c);
 void	check_map(char *path, t_map *map);
 void	check_content(t_map *map);
+void    init_window(t_map *map);
 
 #endif

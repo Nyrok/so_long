@@ -33,6 +33,8 @@ void	init_map(char *path, t_map *map)
 	map->content = NULL;
 	map->lines = NULL;
 	map->copy_lines = NULL;
+	map->mlx = NULL;
+	map->mlx_wdw = NULL;
 	check_map(path, map);
 	safe_close(map, map->fd);
 	check_content(map);
@@ -40,4 +42,6 @@ void	init_map(char *path, t_map *map)
 	if (!map->lines)
 		exit_error(map, "Malloc for lines failed.");
 	backtrack(map);
+	map->size_x = map->line_len * 32;
+	map->size_y = map->line_count * 32;
 }

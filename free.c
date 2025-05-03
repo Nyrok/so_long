@@ -26,6 +26,14 @@ void	free_gnl(int fd, char *line, char *last_line)
 	}
 }
 
+static void	free_mlx(t_map *map)
+{
+	if (map->mlx)
+		free(map->mlx);
+	if (map->mlx_wdw)
+		free(map->mlx_wdw);
+}
+
 void	free_map(t_map *map)
 {
 	size_t	i;
@@ -49,5 +57,6 @@ void	free_map(t_map *map)
 		if (map->copy_lines)
 			free(map->copy_lines);
 	}
+	free_mlx(map);
 	free(map);
 }
