@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 13:16:35 by hkonte            #+#    #+#             */
-/*   Updated: 2025/04/22 13:04:36 by hkonte           ###   ########.fr       */
+/*   Updated: 2025/04/26 18:01:04 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ static void	check_line(t_map *map, char *line, char *last_line, size_t line_len)
 {
 	if (!line)
 		check_wall(map, last_line);
-	else if (ft_strlen(line) != line_len)
-	{
-		free_gnl(map->fd, line, last_line);
-		exit_error(map, "(Map) Line length mismatch.");
-	}
 	else if (line[0] == '\n')
 	{
 		free_gnl(map->fd, line, last_line);
 		exit_error(map, "(Map) Empty lines.");
+	}
+	else if (ft_strlen(line) != line_len)
+	{
+		free_gnl(map->fd, line, last_line);
+		exit_error(map, "(Map) Line length mismatch.");
 	}
 	else if (line[0] != WALL || line[line_len - 2] != WALL)
 	{

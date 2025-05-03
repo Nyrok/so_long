@@ -23,6 +23,7 @@
 # define ITEM 'C'
 # define SPAWN 'P'
 # define VISITED 'X'
+# define MAP_FILE_EXTENSION ".ber"
 
 typedef struct s_map
 {
