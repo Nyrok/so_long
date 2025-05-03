@@ -15,6 +15,9 @@
 void	exit_error(t_map *map, char *message)
 {
 	free_map(map);
-	ft_printf("Error\n%s\n", message);
+	ft_putendl_fd("Error", STDERR_FILENO);
+	ft_putendl_fd(message, STDERR_FILENO);
+	if (errno != 0)
+		perror("Details");
 	exit(EXIT_FAILURE);
 }

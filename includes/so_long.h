@@ -13,6 +13,8 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include <fcntl.h>
+# include <stdio.h>
+# include <errno.h>
 # include "./ft_printf.h"
 # include "./libft.h"
 # include "./get_next_line_bonus.h"
