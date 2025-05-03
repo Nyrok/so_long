@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkonte <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:21:58 by hkonte            #+#    #+#             */
 /*   Updated: 2025/04/26 18:21:59 by hkonte           ###   ########.fr       */
@@ -30,10 +30,10 @@ static void	game_insert(t_map *map, char c, char *texture)
 		j = 0;
 		while (j < map->line_len)
 		{
-			if (map->lines[i][j++] != c)
-				continue ;
-			mlx_put_image_to_window(map->mlx, map->mlx_wdw, \
-				img, (j - 1) * SIZE, i * SIZE);
+			if (map->lines[i][j] == c || c == EMPTY)
+				mlx_put_image_to_window(map->mlx, map->mlx_wdw, \
+					img, j * SIZE, i * SIZE);
+			j++;
 		}
 		i++;
 	}
