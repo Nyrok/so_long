@@ -27,6 +27,26 @@ static void	make_copy(t_map *map)
 	}
 }
 
+static int	check_all_reachable(t_map *map, char c)
+{
+	size_t	x;
+	size_t	y;
+
+	y = 0;
+	while (y < map->line_count)
+	{
+		x = 0;
+		while (x < map->line_len)
+		{
+			if (map->copy_lines[y][x] == c)
+				return (0);
+			x++;
+		}
+		y++;
+	}
+	return (1);
+}
+
 static void	fill(t_map *map, int x, int y)
 {
 	int	line_count;
@@ -38,6 +58,11 @@ static void	fill(t_map *map, int x, int y)
 		return ;
 	if (map->copy_lines[y][x] == WALL || map->copy_lines[y][x] == VISITED)
 		return ;
+	if (map->copy_lines[y][x] == EXIT && !check_all_reachable(map, ITEM))
+	{
+		map->copy_lines[y][x] = EMPTY;
+		return ;
+	}
 	map->copy_lines[y][x] = VISITED;
 	fill(map, x + 1, y);
 	fill(map, x - 1, y);
@@ -69,32 +94,14 @@ static int	find_spawn(t_map *map)
 	return (0);
 }
 
-static int	check_all_reachable(t_map *map)
-{
-	size_t	x;
-	size_t	y;
-
-	y = 0;
-	while (y < map->line_count)
-	{
-		x = 0;
-		while (x < map->line_len)
-		{
-			if (map->copy_lines[y][x] == ITEM || map->copy_lines[y][x] == EXIT)
-				return (0);
-			x++;
-		}
-		y++;
-	}
-	return (1);
-}
-
 void	backtrack(t_map *map)
 {
 	make_copy(map);
 	if (!find_spawn(map))
 		exit_error(map, "(Map) Spawn point not found.");
 	fill(map, map->player_x, map->player_y);
-	if (!check_all_reachable(map))
+	if (!check_all_reachable(map, ITEM))
 		exit_error(map, "(Map) Map not reachable.");
+	if (!check_all_reachable(map, EXIT))
+		exit_error(map, "(Map) Exit not reachable.");
 }
