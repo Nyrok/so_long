@@ -56,10 +56,10 @@ static int	find_spawn(t_map *map)
 		x = 0;
 		while (x < map->line_len)
 		{
-			if (map->copy_lines[y][x] == SPAWN)
+			if (map->copy_lines[y][x] == PLAYER)
 			{
-				map->spawn_x = (int)x;
-				map->spawn_y = (int)y;
+				map->player_x = (int)x;
+				map->player_y = (int)y;
 				return (1);
 			}
 			x++;
@@ -94,7 +94,7 @@ void	backtrack(t_map *map)
 	make_copy(map);
 	if (!find_spawn(map))
 		exit_error(map, "(Map) Spawn point not found.");
-	fill(map, map->spawn_x, map->spawn_y);
+	fill(map, map->player_x, map->player_y);
 	if (!check_all_reachable(map))
 		exit_error(map, "(Map) Map not reachable.");
 }

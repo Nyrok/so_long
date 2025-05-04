@@ -49,13 +49,13 @@ void	init_window(t_map *map)
 		map->size_x, map->size_y, "not_so_long");
 	if (!map->mlx_wdw)
 		exit_error(map, "Cannot create window.");
-	map->imgs = malloc(1 * sizeof(void *));
+	map->imgs = malloc(5 * sizeof(void *));
 	if (!map->imgs)
 		exit_error(map, "Malloc failed for imgs");
 	map->imgs_count = 0;
 	game_insert(map, EMPTY, BACKGROUND_TEXTURE);
 	game_insert(map, WALL, WALL_TEXTURE);
 	game_insert(map, ITEM, ITEM_TEXTURE);
-	game_insert(map, SPAWN, PLAYER_TEXTURE);
+	game_insert(map, PLAYER, PLAYER_TEXTURE);
 	game_insert(map, EXIT, EXIT_TEXTURE);
 }

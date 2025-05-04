@@ -28,13 +28,19 @@ void	free_gnl(int fd, char *line, char *last_line)
 
 static void	free_mlx(t_map *map)
 {
-	if (map->mlx)
-		free(map->mlx);
-	if (map->mlx_wdw)
-		free(map->mlx_wdw);
 	if (map->imgs)
-		while (map->imgs_count)
-			free(map->imgs[map->imgs_count--]);
+	{
+		while (map->imgs_count && --map->imgs_count >= 0)
+			mlx_destroy_image(map->mlx, map->imgs[map->imgs_count]);
+		free(map->imgs);
+	}
+	if (map->mlx_wdw)
+		mlx_destroy_window(map->mlx, map->mlx_wdw);
+	if (map->mlx)
+	{
+		mlx_destroy_display(map->mlx);
+		free(map->mlx);
+	}
 }
 
 void	free_map(t_map *map)

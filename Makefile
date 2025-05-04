@@ -1,5 +1,5 @@
 CX = cc
-CXFLAGS = -Wall -Wextra -Werror
+CXFLAGS = -Wall -Wextra -Werror -g3
 
 MINILIBXFLAGS = -lX11 -lXext -lm
 

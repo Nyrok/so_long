@@ -20,7 +20,7 @@ static void	check_chrs(t_map *map, char *line, char *last_line, size_t line_len)
 	while (i < line_len - 1)
 	{
 		if (line[i] != WALL && line[i] != EMPTY && line[i] != EXIT \
-			&& line[i] != ITEM && line[i] != SPAWN)
+			&& line[i] != ITEM && line[i] != PLAYER)
 		{
 			free_gnl(map->fd, line, last_line);
 			exit_error(map, "(Map) Invalid map chars.");
@@ -100,7 +100,7 @@ void	check_content(t_map *map)
 {
 	if (!ft_strchr(map->content, ITEM))
 		exit_error(map, "(Map) The map must have at least one item.");
-	if (ft_strcount(map->content, SPAWN) != 1)
+	if (ft_strcount(map->content, PLAYER) != 1)
 		exit_error(map, "(Map) The map must have one player spawn.");
 	if (ft_strcount(map->content, EXIT) != 1)
 		exit_error(map, "(Map) The map must have one exit.");

@@ -24,7 +24,7 @@
 # define WALL '1'
 # define EXIT 'E'
 # define ITEM 'C'
-# define SPAWN 'P'
+# define PLAYER 'P'
 # define VISITED 'X'
 # define MAP_FILE_EXTENSION ".ber"
 # define BACKGROUND_TEXTURE "./textures/background.xpm"
@@ -44,8 +44,8 @@ typedef struct s_map
 	void	**imgs;
 	int		size_x;
 	int		size_y;
-	int		spawn_x;
-	int		spawn_y;
+	int		player_x;
+	int		player_y;
 	size_t	line_len;
 	size_t	line_count;
 	size_t	imgs_count;
