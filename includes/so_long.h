@@ -42,17 +42,20 @@ typedef struct s_map
 	void	*mlx;
 	void	*mlx_wdw;
 	void	**imgs;
+	int		remaining_items;
 	int		size_x;
 	int		size_y;
-	int		player_x;
-	int		player_y;
+	size_t	player_x;
+	size_t	player_y;
 	size_t	line_len;
 	size_t	line_count;
 	size_t	imgs_count;
+	size_t	moves_count;
 }	t_map;
 
 void	init_map(char *path, t_map *map);
 void	exit_error(t_map *map, char *message);
+int		exit_game(t_map *map);
 void	backtrack(t_map *map);
 int		safe_open(t_map *map, char *path);
 void	safe_close(t_map *map, int fd);

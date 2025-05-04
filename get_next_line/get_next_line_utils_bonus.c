@@ -44,6 +44,8 @@ char	*ft_safe_str(char *str)
 	if (str)
 		return (str);
 	str = malloc(sizeof(char));
+	if (!str)
+		return (NULL);
 	str[0] = '\0';
 	return (str);
 }

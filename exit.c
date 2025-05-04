@@ -21,3 +21,10 @@ void	exit_error(t_map *map, char *message)
 		perror("Details");
 	exit(EXIT_FAILURE);
 }
+
+int	exit_game(t_map *map)
+{
+	free_map(map);
+	exit(EXIT_SUCCESS);
+	return (0);
+}

@@ -40,7 +40,7 @@ void	init_map(char *path, t_map *map)
 	safe_close(map, map->fd);
 	check_content(map);
 	map->lines = ft_split(map->content, '\n');
-	if (!map->lines)
+	if (!map->lines || !map->lines[0])
 		exit_error(map, "Malloc for lines failed.");
 	backtrack(map);
 	map->size_x = (map->line_len - 1) * SIZE;

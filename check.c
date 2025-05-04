@@ -99,10 +99,18 @@ void	check_map(char *path, t_map *map)
 
 void	check_content(t_map *map)
 {
-	if (!ft_strchr(map->content, ITEM))
+	size_t	items_count;
+
+	if (!map->content)
+		exit_error(map, "Malloc failed for map content.");
+	items_count = ft_strcount(map->content, ITEM);
+	map->remaining_items = items_count;
+	if (items_count == 0)
 		exit_error(map, "(Map) The map must have at least one item.");
 	if (ft_strcount(map->content, PLAYER) != 1)
 		exit_error(map, "(Map) The map must have one player spawn.");
 	if (ft_strcount(map->content, EXIT) != 1)
 		exit_error(map, "(Map) The map must have one exit.");
+	if (map->line_count >= map->line_len - 1)
+		exit_error(map, "(Map) The map must be rectangular.");
 }

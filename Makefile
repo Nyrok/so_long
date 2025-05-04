@@ -5,7 +5,7 @@ MINILIBXFLAGS = -lX11 -lXext -lm
 
 SRCS =	main.c \
 		map.c \
-		error.c \
+		exit.c \
 		backtrack.c \
 		utils.c \
 		free.c \
