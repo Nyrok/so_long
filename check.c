@@ -78,14 +78,15 @@ void	check_map(char *path, t_map *map)
 
 	fd = safe_open(map, path);
 	line = get_next_line(fd);
+	if (!line)
+		exit_error(map, "(Map) Empty map.");
 	map->fd = fd;
 	map->content = ft_strjoin(map->content, line);
 	line_count = 0;
 	line_len = ft_strlen(line);
 	check_wall(map, line);
-	while (line != NULL)
+	while (line != NULL && ++line_count)
 	{
-		line_count++;
 		last_line = line;
 		line = get_next_line(fd);
 		check_line(map, line, last_line, line_len);
